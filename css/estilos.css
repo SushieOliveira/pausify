@@ -1,0 +1,50 @@
+
+
+body{
+    background-color: #ECFEF8;
+}
+
+h1{
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    font-size: 24px;
+}
+
+h2{
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    font-size: 20px;
+}
+
+h3{
+    color: black;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.textoverde{
+    color: #004853;
+}
+
+.botaoverde{
+    background-color: #004853;
+    color: white;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 140px;
+    height: 40px;
+
+}
+
+.botaobranco{
+    background-color: white;
+    color: #004853;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 140px;
+    height: 40px;
+}

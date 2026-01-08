@@ -48,3 +48,56 @@ h3{
     width: 140px;
     height: 40px;
 }
+
+#botaonome {
+    background-color: #004853;
+    color: white;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+}
+
+#botaoapelido{
+    background-color: white;
+    color: #004853;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+}
+
+#botaoidade{
+    background-color: white;
+    color: #004853;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+}
+
+#botaousername{
+    background-color: white;
+    color: #004853;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+}
+
+#botaosobreti{
+    background-color: white;
+    color: #004853;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 300px;
+    height: 80px;
+}
+
+.placeholderverde::placeholder{
+    color: white;
+}
+
+.placeholderbranco::placeholder{
+    color: #004853;
+}

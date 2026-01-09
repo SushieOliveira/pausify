@@ -101,3 +101,13 @@ h3{
 .placeholderbranco::placeholder{
     color: #004853;
 }
+
+.botaoguardar{
+    background-color: #004853;
+    color: white;
+    border: solid 2px #004853;
+    border-radius: 20px;
+    width: 140px;
+    height: 40px;
+
+}

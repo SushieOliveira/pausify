@@ -72,7 +72,7 @@ function desbloquearPC() {
     }
 }
 
-//utiliza arrays para mostrar/esconder os itens no quarto, caso os botões da store tenham sido clicados
+//utilizei arrays para mostrar/esconder os itens no quarto, caso os botões da store tenham sido clicados
 function verificarQuarto() {
     var itens = ["roupeiro", "cama", "secretaria", "computador", "tapete", "planta"];
     var imgs = ["item-wardrobe", "item-bed", "item-desk", "item-computer", "item-rug", "item-plant"];
@@ -89,4 +89,5 @@ function verificarQuarto() {
 
 //Por alguma razao, o LocalStorage não está a funcionar no firefox, apenas no chrome, isto foi para testar
 console.log("Página atual: " + window.location.pathname);
+
 console.log("XP lido da memória: " + localStorage.getItem("pontos"));

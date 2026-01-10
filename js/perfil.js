@@ -2,8 +2,9 @@ window.addEventListener("DOMContentLoaded", function () {
     var elNome = document.getElementById("nomeUtilizador");
     var elUsername = document.getElementById("username");
     var elBio = document.getElementById("biografia");
+    var elAvatar = document.getElementById("avatarPerfil");
 
-    if (!elNome || !elUsername || !elBio) return;
+    if (!elNome || !elUsername || !elBio || !elAvatar) return;
 
     var userLogado = null;
     try{
@@ -41,5 +42,11 @@ window.addEventListener("DOMContentLoaded", function () {
     elNome.textContent = nomeCompleto
     elUsername.textContent = "@" + u.login
     elBio.textContent = u.bio
+
+    if (u.avatar) {
+        elAvatar.src = u.avatar;
+    } else {
+        elAvatar.src = 'https://cdn-icons-png.flaticon.com/512/847/847969.png';
+    }
 
 })

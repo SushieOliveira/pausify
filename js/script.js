@@ -167,7 +167,8 @@ if (btnLogar) {
 
         if (encontrado) {
             alert('Login com sucesso!');
-            window.location.href = 'bemvindo.html';
+            localStorage.setItem('userLogado', JSON.stringify({ username: user }));
+            window.location.href = 'bem-vind@.html';
         } else {
             alert('O username ou password estão incorretos.');
             document.getElementById('user').value = '';

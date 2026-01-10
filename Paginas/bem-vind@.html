@@ -20,7 +20,7 @@
     <div class="card shadow">
         <div class="titulo">Bem-vind@!</div>
         <div class="mensagem" id="mensagemUser"></div>
-        <button class="btn-principal" onclick="logout()">Sair</button>
+        <button class="btn-principal" onclick="seguirParaCheckin()">Continuar</button>
     </div>
 </main>
 <script>
@@ -33,9 +33,8 @@
         document.getElementById("mensagemUser").textContent = `Olá, ${userLogado.username}!`;
     });
 
-    function logout() {
-        localStorage.removeItem("userLogado");
-        window.location.href = "login.html";
+    function seguirParaCheckin() {
+        window.location.href = "checkin.html";
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

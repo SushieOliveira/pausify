@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var elUsername = document.getElementById("username");
     var elBio = document.getElementById("biografia");
 
-    if (!elNome || !elUsername || elBio) return;
+    if (!elNome || !elUsername || !elBio) return;
 
     var userLogado = null;
     try{

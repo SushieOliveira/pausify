@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Temporizador Pomodoro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #e9f7f5; font-family: system-ui, -apple-system, BlinkMacSystemFont; margin:0; padding:0; }
+        main { max-width: 420px; margin:auto; padding:20px 15px; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:15px; }
+
+        /* CARDS */
+        .card { width:100%; border-radius:20px; background-color:white; padding:15px; box-shadow:0 4px 12px rgba(0,0,0,0.05); border:2px solid #0a5c60; }
+
+        /* PONTOS */
+        .pontos { display:flex; align-items:center; justify-content:center; font-weight:bold; color:#0a5c60; font-size:1.2rem; gap:5px; }
+
+        /* ATIVIDADE */
+        .atividade-titulo { text-align:center; font-weight:bold; color:#0a5c60; margin-bottom:10px; }
+        #atividade-container { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+        .btn-atividade { flex:1 1 30%; background-color:#d9f0ee; border-radius:20px; padding:10px; font-weight:bold; border:2px solid #0a5c60; cursor:pointer; color:#0a5c60; transition:0.2s; }
+        .btn-atividade.selecionada { background-color:#0a5c60; color:white; border-color:#0a5c60; }
+        .btn-atividade:hover:not(.selecionada) { background-color:#0d8b89; color:white; border-color:#0d8b89; }
+
+        /* TIMER */
+        .circle-timer { width: 220px; height: 220px; margin: 0 auto; position:relative; }
+        circle.bg { fill:none; stroke:#d9f0ee; stroke-width:8; }
+        circle.progress { fill:none; stroke:#0a5c60; stroke-width:6; stroke-linecap:round; transform:rotate(-90deg); transform-origin:50% 50%; transition:stroke-dashoffset 1s linear, stroke 0.5s linear; }
+        #timer { color:#0a5c60; font-weight:800; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.2rem; }
+
+        /* BOTÕES TIMER */
+        .timer-buttons { display:flex; gap:10px; margin-top:15px; width:100%; justify-content:center; }
+        .btn-app { border-radius:30px; font-weight:bold; padding:12px; border:2px solid #0a5c60; font-size:1rem; transition:0.2s; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; flex:1; }
+        .btn-iniciar { background-color:#0a5c60; color:white; border-color:#0a5c60; }
+        .btn-iniciar:hover { background-color:#0d8b89; border-color:#0d8b89; }
+        .btn-pausar { background-color:#c0392b; color:white; border-color:#c0392b; }
+        .btn-pausar:hover { background-color:#e74c3c; border-color:#e74c3c; }
+        .btn-reset { background-color:white; color:#0a5c60; border-color:#0a5c60; }
+        .btn-reset:hover { background-color:#0a5c60; color:white; border-color:#0a5c60; }
+        .btn-notify { background-color:#0a5c60; color:white; border-radius:100%; width:55px; height:55px; font-size:1.2rem; display:flex; align-items:center; justify-content:center; transition:0.2s; border:2px solid #0a5c60; }
+        .btn-notify.off { background-color:#e9f7f5; color:#0a5c60; border-color:#0a5c60; }
+
+        /* HISTÓRICO */
+        .section-title { text-align:center; font-weight:800; text-transform:uppercase; margin:10px 0 10px; color:#0a5c60; }
+        #historico { font-size:0.9rem; line-height:1.5; color:#0a5c60; list-style:none; padding-left:0; margin:0; }
+
+        /* BOTÃO APAGAR HISTÓRICO */
+        #btnClear { display:none; background-color:#c0392b; color:white; border-radius:30px; width:50%; padding:8px; font-weight:bold; border:2px solid #c0392b; margin:5px auto 0; font-size:0.8rem; transition:0.2s; }
+        #btnClear:hover, #btnClear:active { background-color:white; color:#c0392b; border-color:#c0392b; cursor:pointer; }
+
+        /* POPUP OVERLAY */
+        #overlay {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 9999;
+        }
+        #popup {
+            background-color:#0a5c60;
+            color:white;
+            padding:25px 35px;
+            border-radius:20px;
+            font-weight:bold;
+            min-width:250px;
+            text-align:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+<main>
+    <!-- CARD PONTUAÇÃO -->
+    <div class="card">
+        <div class="pontos"><strong>PONTUAÇÃO:</strong> <span id="pontos">0</span> xp</div>
+    </div>
+
+    <!-- CARD ATIVIDADE -->
+    <div class="card">
+        <div class="atividade-titulo">Selecione uma atividade para começar:</div>
+        <div id="atividade-container">
+            <button class="btn-atividade" data-atividade="Estudar">Estudar</button>
+            <button class="btn-atividade" data-atividade="Ler">Ler</button>
+            <button class="btn-atividade" data-atividade="Exercício">Exercício</button>
+        </div>
+    </div>
+
+    <!-- CARD TIMER -->
+    <div class="card text-center">
+        <div class="circle-timer">
+            <svg width="220" height="220">
+                <circle class="bg" cx="110" cy="110" r="100"/>
+                <circle class="progress" cx="110" cy="110" r="100"/>
+            </svg>
+            <span id="timer">25:00</span>
+        </div>
+        <div class="timer-buttons">
+            <button id="btnStart" class="btn-app btn-iniciar">INICIAR</button>
+            <button id="btnReset" class="btn-app btn-reset">REINICIAR</button>
+            <button id="btnNotify" class="btn-notify" title="Ativar/Desativar notificação">🔔</button>
+        </div>
+    </div>
+
+    <!-- CARD HISTÓRICO -->
+    <div class="card">
+        <div class="section-title">Histórico de Sessões</div>
+        <ul id="historico"></ul>
+        <button id="btnClear">Apagar Histórico</button>
+    </div>
+
+    <audio id="som">
+        <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3" type="audio/mpeg">
+    </audio>
+</main>
+
+<!-- POPUP OVERLAY -->
+<div id="overlay">
+    <div id="popup"></div>
+</div>
+
+<script src="pomodoro.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 window.onload = function () {
 
-    // ---------- DADOS DO FORMULÁRIO ----------
+
     var inpNome = document.getElementById("botaonome");
     var inpApelido = document.getElementById("botaoapelido");
     var inpIdade = document.getElementById("botaoidade");
@@ -8,7 +8,7 @@ window.onload = function () {
     var inpBio = document.getElementById("botaosobreti");
     var btnGuardar = document.getElementById("btnGuardar");
 
-    // ---------- AVATAR ----------
+
     var avatarsContainer = document.getElementById('avatars');
     var uploadInput = document.getElementById('uploadAvatar');
     var avatarSelecionado = null;
@@ -17,7 +17,7 @@ window.onload = function () {
         return;
     }
 
-    // ---------- UTILIZADOR LOGADO ----------
+
     var userLogado = JSON.parse(localStorage.getItem('userLogado'));
     if (!userLogado || !userLogado.username) {
         window.location.href = "login.html";
@@ -26,7 +26,7 @@ window.onload = function () {
 
     var loginAtual = userLogado.username;
 
-    // ---------- UTILIZADORES ----------
+
     var utilizadores = JSON.parse(localStorage.getItem('utilizadores')) || [];
     var u = null;
 
@@ -42,7 +42,7 @@ window.onload = function () {
         return;
     }
 
-    // ---------- PRÉ-PREENCHER ----------
+
     inpNome.value = u.nome;
     inpApelido.value = u.apelido;
     inpIdade.value = u.idade;
@@ -50,7 +50,7 @@ window.onload = function () {
     inpUsername.readOnly = true;
     inpBio.value = u.bio || "";
 
-    // ---------- AVATAR (LÓGICA DO REGISTO) ----------
+
     if (avatarsContainer && uploadInput) {
 
         function selecionarAvatar(avatar) {
@@ -62,7 +62,7 @@ window.onload = function () {
             avatarSelecionado = avatar.getElementsByTagName("img")[0].src;
         }
 
-        // Avatares default
+
         var avatares = avatarsContainer.querySelectorAll('.avatar');
         for (var j = 0; j < avatares.length; j++) {
             avatares[j].onclick = function () {
@@ -70,7 +70,7 @@ window.onload = function () {
             };
         }
 
-        // Avatar atual do utilizador
+
         if (u.avatar) {
             avatarSelecionado = u.avatar;
 
@@ -85,7 +85,7 @@ window.onload = function () {
                 }
             }
 
-            // Se for upload (não é default)
+
             if (!encontrado) {
                 var novoAvatar = document.createElement("div");
                 novoAvatar.className = "avatar uploaded";
@@ -114,7 +114,7 @@ window.onload = function () {
             }
         }
 
-        // Upload
+
         uploadInput.onchange = function () {
             if (avatarsContainer.querySelectorAll('.avatar.uploaded').length > 0) {
                 alert("Só pode adicionar 1 avatar carregado!");
@@ -155,7 +155,7 @@ window.onload = function () {
         };
     }
 
-    // ---------- GUARDAR ----------
+
     btnGuardar.onclick = function () {
         u.nome = inpNome.value;
         u.apelido = inpApelido.value;

@@ -21,6 +21,24 @@
     <h1 id="avatar" class="mb-0">
         Escolher Avatar
     </h1>
+    <div class="avatars" id="avatars">
+        <!-- Avatar 1 -->
+        <div class="avatar">
+            <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="Avatar 1">
+        </div>
+
+        <!-- Avatar 2 -->
+        <div class="avatar">
+            <img src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="Avatar 2">
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <label class="btn btn-outline-primary rounded-pill">
+            Carregar imagem
+            <input type="file" id="uploadAvatar" accept="image/*" hidden>
+        </label>
+    </div>
 </div>
 <div id="tituloUtilizador" class=" d-flex flex-column align-items-center mt-5">
     <h1 id="utilizador" class="mb-0">
@@ -34,12 +52,11 @@
     <input id="botaousername" placeholder="Inserir username" class="text-center placeholderbranco" readonly>
     <input id="botaosobreti" placeholder="Escreve algo sobre ti..." class="text-center placeholderbranco">
 
-    <button id="btnGuardar" class="botaoguardar d-flex flex-column align-items-center gap-4 mt-3" type="submit">
+    <button id="btnGuardar" class="botaoguardar d-flex flex-column align-items-center gap-4 mt-3" type="button">
         Guardar
     </button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="../js/dadosperfil.js"> </script>
 <script src="../js/editarperfil.js"> </script>
 </body>
 </html>

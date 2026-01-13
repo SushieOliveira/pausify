@@ -5,22 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pausify</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        body { background-color: #e9f7f5; font-family: system-ui, -apple-system, BlinkMacSystemFont; }
-        main { max-width: 420px; margin: auto; padding: 30px 20px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .card { width: 100%; border-radius: 25px; border: 1px solid #0a5c60; padding: 40px 20px; text-align: center; }
-        .logo-text { font-size: 3rem; font-weight: 800; color: #0a5c60; margin-bottom: 20px; }
-        .btn-principal { background-color: #0a5c60; color: white; border-radius: 30px; padding: 12px; font-weight: bold; border: 2px solid white; transition: background-color 0.2s, color 0.2s, border-color 0.2s; width: 100%; }
-        .btn-principal:hover { background-color: white; color: #0a5c60; border-color: #0a5c60; }
+        body {
+            margin: 0;
+            background-color: #e9f7f5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        main {
+            max-width: 420px;
+            width: 90%;
+        }
+
+        /* Splash */
+        #splash {
+            position: fixed;
+            inset: 0;
+            background-color: #e9f7f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* Play/Pause wrapper */
+        .icon-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* Play → triângulo */
+        .icon-shape {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 48px solid transparent;
+            border-bottom: 48px solid transparent;
+            border-left: 80px solid #0a5c60;
+            border-radius: 4px;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Pause → barras */
+        .pause {
+            width: 0;
+            height: 0;
+            border: none;
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .pause div {
+            width: 32px;
+            height: 96px;
+            background-color: #0a5c60;
+            border-radius: 6px;
+        }
+
+        .pause.hidden {
+            opacity: 0;
+        }
+
+        /* Cursor seta realista */
+        .cursor {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            left: 140%;
+            top: 140%;
+            opacity: 0;
+            transition: transform 0.6s ease, opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .cursor.move {
+            transform: translate(-100px, -100px);
+            opacity: 1;
+        }
+
+        .cursor.click {
+            transform: translate(-100px, -100px) scale(0.85);
+        }
+
+        /* Fade splash */
+        #splash.fade {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        /* Landing */
+        #landing {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: clamp(2rem, 7vw, 2.5rem);
+            font-weight: 800;
+            color: #0a5c60;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .btn-principal {
+            background-color: #0a5c60;
+            color: white;
+            border-radius: 35px;
+            padding: 14px;
+            font-weight: bold;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 80%;
+            max-width: 250px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-principal:active {
+            transform: scale(0.95);
+        }
+
+        .btn-principal:hover {
+            background-color: white;
+            color: #0a5c60;
+            border-color: #0a5c60;
+        }
+
+        .criar-conta {
+            font-size: 1rem;
+            color: #4a6f72;
+        }
+
+        .criar-conta span {
+            color: #0a5c60;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .criar-conta span:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
+
 <body>
-<main>
-    <div class="card shadow">
-        <div class="logo-text">Pausify</div>
-        <button class="btn-principal" onclick="window.location.href='registo.html'">Criar Conta</button>
+
+<!-- Splash -->
+<div id="splash">
+    <div class="icon-wrapper">
+        <!-- Play -->
+        <div id="playIcon" class="icon-shape"></div>
+
+        <!-- Pause -->
+        <div id="pauseIcon" class="pause hidden">
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Cursor realista -->
+        <svg id="cursor" class="cursor" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L2 22L7 17L12 22L12 2Z"/>
+        </svg>
     </div>
+</div>
+
+<main>
+    <section id="landing">
+        <div class="logo-text">Pausify</div>
+
+        <button id="btnLogin" class="btn-principal">
+            INICIAR SESSÃO
+        </button>
+
+        <div class="criar-conta">
+            Ainda não tens conta? <span id="btnCreate">Criar conta</span>
+        </div>
+    </section>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const cursor = document.getElementById('cursor');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const splash = document.getElementById('splash');
+    const landing = document.getElementById('landing');
+
+    // Cursor aproxima-se
+    setTimeout(() => {
+        cursor.classList.add('move');
+    }, 400);
+
+    // Cursor clica
+    setTimeout(() => {
+        cursor.classList.add('click');
+        playIcon.style.transform = 'scale(0.9)';
+    }, 1000);
+
+    // Play desaparece → Pause surge no mesmo lugar
+    setTimeout(() => {
+        playIcon.style.opacity = 0;
+        pauseIcon.classList.remove('hidden');
+    }, 1400);
+
+    // Fade splash
+    setTimeout(() => {
+        splash.classList.add('fade');
+    }, 2400);
+
+    // Mostrar landing
+    setTimeout(() => {
+        splash.style.display = 'none';
+        landing.style.opacity = 1;
+        landing.style.transform = 'translateY(0)';
+    }, 3000);
+
+    // Botões
+    const btnLogin = document.getElementById('btnLogin');
+    btnLogin.addEventListener('mousedown', e => e.currentTarget.style.transform = 'scale(0.95)');
+    btnLogin.addEventListener('mouseup', e => e.currentTarget.style.transform = 'scale(1)');
+    btnLogin.onclick = () => window.location.href = 'login.html';
+
+    document.getElementById('btnCreate').onclick = () => window.location.href = 'registo.html';
+</script>
+
 </body>
 </html>

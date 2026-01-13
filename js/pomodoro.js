@@ -1,6 +1,6 @@
-// VARIÁVEIS
-var TEMPO_FOCO = 0.25 * 60;   // 25 minutos - Para trocar é aqui
-var TEMPO_PAUSA = 0.25 * 60;  // 5 minutos - Para trocar é aqui
+
+var TEMPO_FOCO = 25 * 60;   // 25 minutos - Para trocar é aqui
+var TEMPO_PAUSA = 5 * 60;  // 5 minutos - Para trocar é aqui
 
 var tempoTotal = TEMPO_FOCO;
 var tempoRestante = TEMPO_FOCO;
@@ -260,3 +260,5 @@ for (var i = 0; i < btnAtividades.length; i++) {
 pontosEl.textContent = pontos;
 atualizarTimer();
 atualizarHistorico();
+
+

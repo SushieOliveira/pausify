@@ -68,7 +68,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 5px; /* espaço entre os 2 avatares */
+            gap: 5px;
             margin: 15px 0;
         }
 
@@ -80,10 +80,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative; /* para o botão delete */
+            position: relative;
             cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s; /* animação suave */
-            border: 5px solid transparent; /* borda inicial invisível */
+            transition: transform 0.2s, border-color 0.2s;
+            border: 5px solid transparent;
         }
 
         .avatar img {
@@ -91,7 +91,7 @@
             border-radius: 50%;
         }
 
-        /* Hover dos avatares */
+
         .avatar:hover {
             transform: scale(1.1);
         }
@@ -101,12 +101,12 @@
         }
 
 
-        /* Delete criativo: caixote do lixo */
+
         .delete-btn {
             position: absolute;
             top: -10px;
             right: -10px;
-            background-color: #0a5c60; /* fundo azul inicial */
+            background-color: #0a5c60;
             color: white;
             border: none;
             border-radius: 50%;
@@ -123,13 +123,13 @@
         }
 
         .delete-btn::before {
-            content: "🗑️"; /* ícone do caixote do lixo */
+            content: "🗑️";
             display: block;
             font-size: 16px;
             line-height: 1;
         }
 
-        /* Hover apenas no botão de delete */
+
         .delete-btn:hover {
             background-color: red;
         }
@@ -137,9 +137,9 @@
 
 
         .btn-upload {
-            background-color: #ffffff; /* fundo branco */
-            color: #0a5c60; /* letras azul escuro */
-            border: 2px solid #0a5c60; /* borda azul */
+            background-color: #ffffff;
+            color: #0a5c60;
+            border: 2px solid #0a5c60;
             padding: 10px 25px;
             font-weight: bold;
             cursor: pointer;
@@ -147,25 +147,25 @@
         }
 
         .btn-upload:hover {
-            background-color: #0a5c60; /* fundo azul ao passar o mouse */
-            color: #ffffff; /* letras brancas ao passar o mouse */
+            background-color: #0a5c60;
+            color: #ffffff;
         }
 
         .btn-seguinte {
-            background-color: #0a5c60; /* fundo azul */
-            color: white; /* letras brancas */
+            background-color: #0a5c60;
+            color: white;
             border-radius: 30px;
             padding: 12px;
             font-weight: bold;
-            border: 2px solid white; /* borda igual à cor do texto */
+            border: 2px solid white;
             cursor: pointer;
-            transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* transição suave */
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         }
 
         .btn-seguinte:hover {
-            background-color: white; /* fundo claro */
-            color: #0a5c60; /* letras azul */
-            border-color: #0a5c60; /* borda azul */
+            background-color: white;
+            color: #0a5c60;
+            border-color: #0a5c60;
         }
 
 
@@ -176,15 +176,15 @@
 <main>
     <h4 class="titulo">Dados Utilizador</h4>
 
-    <!-- Nome -->
+
     <label for="nome" class="form-label text-center w-100 fw-bold">Nome</label>
     <input type="text" id="nome" class="form-control" placeholder="Inserir nome">
 
-    <!-- Apelido -->
+
     <label for="apelido" class="form-label text-center w-100 fw-bold">Apelido</label>
     <input type="text" id="apelido" class="form-control" placeholder="Inserir apelido">
 
-    <!-- Idade -->
+
     <label class="form-label text-center w-100 fw-bold">Idade</label>
     <div class="text-center mb-3">
         <span id="idadeValor" style="font-size: 2rem; font-weight: 800; color: #0a5c60;">18</span>
@@ -192,7 +192,7 @@
     </div>
     <input type="range" id="idade" class="form-range" min="1" max="99" value="18">
 
-    <!-- Ensino -->
+
     <div class="section-title">Nível de Escolaridade</div>
     <div class="form-check">
         <input class="form-check-input" type="radio" name="ensino" id="licenciatura">
@@ -209,18 +209,18 @@
 
     <div class="section-title">Escolher Avatar</div>
     <div class="avatars" id="avatars">
-        <!-- Avatar Homem -->
+
         <div class="avatar">
             <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="Avatar Homem">
         </div>
 
-        <!-- Avatar Mulher -->
+
         <div class="avatar">
             <img src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="Avatar Mulher">
         </div>
     </div>
 
-    <!-- Upload de imagem -->
+
     <div class="text-center mt-3">
         <label class="btn btn-outline-primary rounded-pill btn-upload">
             Carregar imagem
@@ -229,7 +229,7 @@
     </div>
 
 
-    <!-- Botão Seguinte -->
+
     <div class="d-grid mt-4">
         <button class="btn-seguinte" id="btnSeguinte">SEGUINTE</button>
     </div>

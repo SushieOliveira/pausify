@@ -3,57 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pausify</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <title>Pausify - Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/estilos.css">
+    <style>
+        body {
+            background-color: #e0f2f1;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-top {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0;
+            padding: 15px 0;
+        }
+
+        header h2 {
+            font-weight: 700;
+            color: #0a5c60;
+        }
+
+        header .bi-arrow-left {
+            position: absolute;
+            left: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a5c60;
+        }
+
+        #dadosperfil {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        #avatarPerfil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #0a5c60;
+            margin-bottom: 10px;
+        }
+
+        #nomeUtilizador {
+            font-weight: 700;
+            color: #0a5c60;
+        }
+
+        #username {
+            color: #0a5c60;
+            font-weight: 500;
+        }
+
+        #biografia {
+            text-align: center;
+            color: #333;
+            margin: 10px 20px;
+        }
+
+        .botao-perfil {
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .botaoverde {
+            background-color: #0a5c60;
+            color: white;
+        }
+
+        .botaoverde:hover {
+            background-color: #ffffff;
+            color: #0a5c60;
+            border: 2px solid #0a5c60;
+        }
+
+        .botaoterminar {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .botaoterminar:hover {
+            background-color: #ffffff;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        .botoes-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        #navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 400px) {
+            .botao-perfil {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .header-top {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .btn-back {
+            position: absolute;
+            left: 20px;
+            font-size: 24px;
+            color: #0a5c60;
+            text-decoration: none;
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0a5c60;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-<header class=" position-relative align-items-center justify-content-center d-flex mt-5">
-    <i class="bi bi-arrow-left position-absolute start-0 ms-3 fs-3"></i>
-    <h2> Perfil </h2>
-</header>
-    <div id="dadosperfil" class=" d-flex flex-column align-items-center">
-        <img id="avatarPerfil" alt="Avatar"
-             style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-top:20px;">
-    <h1 id="nomeUtilizador" class="mb-0">
-        Sara Martins
-    </h1>
-    <h3 id="username" class="textoverde">
-        @Sarinha.21
-    </h3>
-    <p id="biografia" class="text-center mx-5">
-        Apaixonada por desafios e sempre
-        em busca de novos objetivos! 🌟
-    </p>
-    <div class= "d-flex flex-column align-items-center gap-4 mt-1">
+<div class="header-top">
+    <a href="javascript:history.back()" class="btn-back"><i class="bi bi-arrow-left"></i></a>
+    <div class="page-title">Perfil</div>
+</div>
+
+<div id="dadosperfil" class="d-flex flex-column align-items-center">
+    <img id="avatarPerfil" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Avatar">
+    <h1 id="nomeUtilizador">Nome Completo</h1>
+    <h3 id="username" class="textoverde">@username</h3>
+    <p id="biografia">Biografia do utilizador...</p>
+
+    <div class="botoes-container">
         <a href="editarperfil.html">
-            <button class="botaoverde">
-                Editar perfil
-            </button>
+            <button class="botao-perfil botaoverde">Editar Perfil</button>
         </a>
-        <a href="login.html">
-        <button id="btnLogout" class="botaobranco">
-            Terminar sessão
-        </button>
+        <button id="btnLogout" class="botao-perfil botaoterminar">Terminar Sessão</button>
     </div>
 </div>
-<nav class="bottom-bar" aria-label="Navegação inferior">
-    <a href="perfil.html" aria-label="Perfil">
-        <i class="bi bi-person-fill"></i>
-    </a>
-    <a class="center" href="pomodoro.html" aria-label="Pomodoro">
-        <i class="bi bi-clock-fill"></i>
-    </a>
-    <a href="Room_Game/my_room.html" aria-label="InĹcio">
-        <i class="bi bi-house-fill"></i>
-    </a>
-</nav>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="../js/perfil.js"> </script>
+
+<div id="navbar"></div>
+
+<script src="/js/navbar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const elNome = document.getElementById("nomeUtilizador");
+        const elUsername = document.getElementById("username");
+        const elBio = document.getElementById("biografia");
+        const elAvatar = document.getElementById("avatarPerfil");
+        const btnLogout = document.getElementById("btnLogout");
+
+        if (!elNome || !elUsername || !elBio || !elAvatar || !btnLogout) return;
+
+        let userLogado = null;
+        try {
+            userLogado = JSON.parse(localStorage.getItem("userLogado"));
+        } catch(e) { userLogado = null; }
+
+        if (!userLogado || (!userLogado.username && !userLogado.login)) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        const loginAtual = userLogado.login || userLogado.username;
+
+        let utilizadoresLS = JSON.parse(localStorage.getItem("utilizadores")) || [];
+
+
+        const admin = { login: "admin", pass: "admin", nome: "Admin", apelido: "", avatar: null, bio: "" };
+        if (!utilizadoresLS.some(u => u.login === "admin")) {
+            utilizadoresLS.push(admin);
+        }
+
+        const u = utilizadoresLS.find(u => u.login === loginAtual);
+
+        if (u) {
+            elNome.textContent = (u.nome || "") + " " + (u.apelido || "");
+            elUsername.textContent = "@" + u.login;
+            elBio.textContent = u.bio || "Este utilizador ainda não adicionou uma biografia.";
+            elAvatar.src = u.avatar || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+        }
+
+        btnLogout.addEventListener("click", () => {
+            localStorage.removeItem("userLogado");
+            window.location.href = "login.html";
+        });
+    });
+</script>
 </body>
 </html>

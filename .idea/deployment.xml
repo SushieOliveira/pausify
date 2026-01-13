@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="Servidor Pausify" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Servidor Pausify" remoteFilesAllowedToDisappearOnAutoupload="false" showNewOnTargetInSync="false">
     <serverData>
       <paths name="Servidor Pausify">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="D:/LAB3_PAUSIFY" web="/LM3-008" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/LM3-008" />
           </mappings>
         </serverdata>
       </paths>

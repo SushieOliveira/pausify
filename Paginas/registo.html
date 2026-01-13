@@ -100,8 +100,6 @@
             transform: scale(1.2);
         }
 
-
-
         .delete-btn {
             position: absolute;
             top: -10px;
@@ -129,45 +127,60 @@
             line-height: 1;
         }
 
-
         .delete-btn:hover {
             background-color: red;
         }
 
-
+        /* --- ESTILOS DOS BOTÕES ATUALIZADOS --- */
 
         .btn-upload {
-            background-color: #ffffff;
-            color: #0a5c60;
-            border: 2px solid #0a5c60;
-            padding: 10px 25px;
-            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #0a5c60 !important; /* Forçar cor por causa do bootstrap */
+            border: 1px solid rgba(10, 92, 96, 0.3);
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: 50px !important;
             cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -10px rgba(10, 92, 96, 0.25);
         }
 
         .btn-upload:hover {
-            background-color: #0a5c60;
-            color: #ffffff;
+            background-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -12px rgba(10, 92, 96, 0.35);
+            border-color: #0a5c60;
+            color: #0a5c60 !important;
         }
 
         .btn-seguinte {
             background-color: #0a5c60;
             color: white;
-            border-radius: 30px;
-            padding: 12px;
-            font-weight: bold;
-            border: 2px solid white;
+            width: 100%; /* Largura total fica melhor neste estilo */
+            padding: 16px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            box-shadow: 0 10px 30px -10px rgba(10, 92, 96, 0.25);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-seguinte:hover {
-            background-color: white;
-            color: #0a5c60;
-            border-color: #0a5c60;
+            background-color: #0d4e52;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -12px rgba(10, 92, 96, 0.35);
         }
 
+        .btn-seguinte:active {
+            transform: scale(0.97);
+        }
 
     </style>
 </head>
@@ -222,13 +235,11 @@
 
 
     <div class="text-center mt-3">
-        <label class="btn btn-outline-primary rounded-pill btn-upload">
+        <label class="btn btn-upload">
             Carregar imagem
             <input type="file" id="uploadAvatar" accept="image/*" hidden>
         </label>
     </div>
-
-
 
     <div class="d-grid mt-4">
         <button class="btn-seguinte" id="btnSeguinte">SEGUINTE</button>

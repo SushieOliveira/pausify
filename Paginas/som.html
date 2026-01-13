@@ -140,7 +140,7 @@
             btnSound.innerHTML = '<i class="bi bi-volume-up-fill"></i> Som Ligado';
             volumeSlider.style.display = 'block';
             volumeSlider.previousElementSibling.style.display = 'block';
-            volumeSlider.nextElementSibling.style.display = 'flex';
+            volumeSlider.nextElementSibling.style.display = 'flex'; // labels 0-50-100
         } else {
             btnSound.classList.add('off');
             btnSound.innerHTML = '<i class="bi bi-volume-mute-fill"></i> Som Desligado';
@@ -152,6 +152,7 @@
 
     atualizarInterface();
 
+    // Alternar som ligado/desligado
     btnSound.addEventListener('click', () => {
         somLigado = !somLigado;
         localStorage.setItem('somLigado', somLigado);
@@ -159,6 +160,7 @@
         console.log("Som " + (somLigado ? "ligado" : "desligado"));
     });
 
+    // Ajuste de volume só se som estiver ligado
     volumeSlider.addEventListener('input', () => {
         if (somLigado) {
             const volume = volumeSlider.value;

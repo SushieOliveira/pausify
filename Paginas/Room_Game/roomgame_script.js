@@ -1,31 +1,69 @@
-// Recupera pontos do localStorage
+// ================= POPUP =================
+var overlay = document.createElement('div');
+overlay.id = 'overlay';
+overlay.style.position = 'fixed';
+overlay.style.top = '0';
+overlay.style.left = '0';
+overlay.style.width = '100%';
+overlay.style.height = '100%';
+overlay.style.display = 'none';
+overlay.style.justifyContent = 'center';
+overlay.style.alignItems = 'center';
+overlay.style.background = 'rgba(0,0,0,0.3)';
+overlay.style.zIndex = '1000';
+overlay.style.pointerEvents = 'none';
+
+var popup = document.createElement('div');
+popup.id = 'popup';
+popup.style.backgroundColor = '#0a5c60';
+popup.style.color = '#fff';
+popup.style.padding = '20px 30px';
+popup.style.borderRadius = '15px';
+popup.style.fontWeight = '700';
+popup.style.fontSize = '1rem';
+popup.style.opacity = 0;
+popup.style.transform = 'translateY(-20px)';
+popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+popup.style.pointerEvents = 'all';
+popup.style.textAlign = 'center';
+
+overlay.appendChild(popup);
+document.body.appendChild(overlay);
+
+function mostrarPopup(mensagem){
+    popup.textContent = mensagem;
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+        popup.style.opacity = 1;
+        popup.style.transform = 'translateY(0)';
+    }, 10);
+    setTimeout(() => {
+        popup.style.opacity = 0;
+        popup.style.transform = 'translateY(-20px)';
+        setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    }, 2500);
+}
+
+// ================= PONTOS =================
 var pontos = localStorage.getItem("pontos");
 
-// Se não existir, define valor inicial
 if (!pontos) {
-    pontos = "0"; // valor inicial de teste
+    pontos = 0; // valor inicial
 } else {
     pontos = parseInt(pontos);
 }
 
-// Função que atualiza o card de pontuação e o badge XP
 function atualizarPontuacao() {
     var spanPontos = document.getElementById("pontos");
-    if (spanPontos) {
-        spanPontos.textContent = pontos;
-    }
+    if (spanPontos) spanPontos.textContent = pontos;
 
     var spanUserXP = document.getElementById("user-xp");
-    if (spanUserXP) {
-        spanUserXP.textContent = pontos;
-    }
+    if (spanUserXP) spanUserXP.textContent = pontos;
 }
 
-// LOAD DA PÁGINA
-
+// ================= LOAD =================
 window.onload = function () {
     atualizarPontuacao();
-
 
     if (document.getElementById("btn_wardrobe") ||
         document.getElementById("btn_bed") ||
@@ -46,9 +84,7 @@ window.onload = function () {
     }
 };
 
-
-// FUNÇÕES DA LOJA
-
+// ================= LOJA =================
 function comprarItem(idBtn, custo, nome) {
     if (pontos >= custo) {
         pontos -= custo;
@@ -58,15 +94,12 @@ function comprarItem(idBtn, custo, nome) {
         atualizarPontuacao();
         atualizarBotao(idBtn);
 
-        if (nome === "secretaria") {
-            desbloquearPC();
-        }
+        if (nome === "secretaria") desbloquearPC();
     } else {
-        alert("Não tem pontos disponíveis");
+        mostrarPopup("Não tem pontos disponíveis"); // substitui alert
     }
 }
 
-// Atualiza o estado dos botões da loja
 function verificarLoja() {
     var itens = ["roupeiro", "cama", "secretaria", "computador", "tapete", "planta"];
     var btns = ["btn_wardrobe", "btn_bed", "btn_desk", "btn_computer", "btn_rug", "btn_plant"];
@@ -82,7 +115,6 @@ function verificarLoja() {
     }
 }
 
-// Atualiza um botão da loja quando o item comprado
 function atualizarBotao(id) {
     var b = document.getElementById(id);
     if (b) {
@@ -92,7 +124,6 @@ function atualizarBotao(id) {
     }
 }
 
-// Desbloqueia o computador apenas se a secretária estiver comprada
 function desbloquearPC() {
     var pc = document.getElementById("btn_computer");
     if (pc && localStorage.getItem("item_computador") !== "comprado") {
@@ -101,8 +132,7 @@ function desbloquearPC() {
     }
 }
 
-
-// FUNÇÕES DO QUARTO
+// ================= QUARTO =================
 function verificarQuarto() {
     var itens = ["roupeiro", "cama", "secretaria", "computador", "tapete", "planta"];
     var imgs = ["item-wardrobe", "item-bed", "item-desk", "item-computer", "item-rug", "item-plant"];
@@ -110,17 +140,11 @@ function verificarQuarto() {
     for (var i = 0; i < itens.length; i++) {
         var img = document.getElementById(imgs[i]);
         if (img) {
-            if (localStorage.getItem("item_" + itens[i]) === "comprado") {
-                img.style.display = "block";
-            } else {
-                img.style.display = "none";
-            }
+            img.style.display = (localStorage.getItem("item_" + itens[i]) === "comprado") ? "block" : "none";
         }
     }
 }
 
-
-// DEBUG
-
+// ================= DEBUG =================
 console.log("Página atual: " + window.location.pathname);
 console.log("XP lido da memória: " + pontos);

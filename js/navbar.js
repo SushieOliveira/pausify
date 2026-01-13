@@ -4,7 +4,7 @@ document.querySelectorAll('.bottom-bar a').forEach(link => {
         link.classList.add('active');
     }
 });
-fetch('navbar.html')
+fetch('../../Paginas/navbar.html')
     .then(res => {
         if (!res.ok) throw new Error('Navbar não encontrada');
         return res.text();

@@ -5,7 +5,7 @@ document.querySelectorAll('.bottom-bar a').forEach(link => {
     }
 });
 
-fetch('../navbar/navbar.html')
+fetch('navbar.html')
     .then(res => {
         if (!res.ok) throw new Error('Navbar não encontrada');
         return res.text();
@@ -13,7 +13,7 @@ fetch('../navbar/navbar.html')
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
 
-        // Marcar link ativo após carregar navbar
+        // Marcar o link ativo no menu após carregar a navbar
         document.querySelectorAll('.bottom-bar a').forEach(link => {
             const linkURL = new URL(link.href, window.location.origin);
             if (linkURL.pathname === window.location.pathname) {

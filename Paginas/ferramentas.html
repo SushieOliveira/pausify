@@ -94,10 +94,10 @@
     </div>
 </main>
 
-<!-- JS com moodsData -->
+
 <script src="../js/estadoespirito.js"></script>
 
-<!-- JS que mostra apenas 3 sugestões aleatórias -->
+
 <script>
 (function() {
     var dailyCheckin = JSON.parse(localStorage.getItem("dailyCheckin"));
@@ -107,19 +107,19 @@
         return;
     }
 
-    // pega apenas as sugestões do mood selecionado
+
     var mood = dailyCheckin.mood;
-    var moodSuggestions = moodsData[mood]; // só deste mood
+    var moodSuggestions = moodsData[mood];
     var container = document.getElementById("cardContainer");
 
     
 
-    // função para escolher 3 sugestões aleatórias
+
     function getRandomSuggestions(arr, count) {
         if (!count) count = 3;
         var cloned = [];
         for (var i = 0; i < arr.length; i++) {
-            cloned.push(arr[i]); // cloend do array original
+            cloned.push(arr[i]);
         }
 
         var result = [];
@@ -127,12 +127,12 @@
             if (cloned.length === 0) break;
             var idx = Math.floor(Math.random() * cloned.length);
             result.push(cloned[idx]);
-            cloned.splice(idx, 1); // remove para não repetir
+            cloned.splice(idx, 1);
         }
         return result;
     }
 
-    // pega 3 sugestões aleatórias **somente do mood selecionado**
+
     var suggestions = getRandomSuggestions(moodSuggestions, 3);
 
     for (var i = 0; i < suggestions.length; i++) {
@@ -151,14 +151,14 @@
         text.textContent = s.text;
         card.appendChild(text);
 
-        // iframe se tiver URL
+
         if (s.url) {
             var iframe = document.createElement("iframe");
             iframe.src = s.url.replace("watch?v=", "embed/");
             card.appendChild(iframe);
         }
 
-        // GIF se tiver
+
         if (s.gif) {
             var img = document.createElement("img");
             img.src = s.gif;

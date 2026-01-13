@@ -38,8 +38,8 @@
         .mood-btn {
             font-size: 24px;
             border-radius: 100%;
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border: 1px solid #0a5c60;
             background-color: white;
             display: flex;
@@ -120,14 +120,13 @@
 
     const moodButtons = document.querySelectorAll('.mood-btn');
 
-    // Seleção/desseleção de emoji
     moodButtons.forEach(btn => {
-        btn.addEventListener('click', function(event) {
-            event.stopPropagation(); // evita o clique "fora" de ser acionado
-            // Deseleciona todos
+        btn.addEventListener('click', function (event) {
+            event.stopPropagation();
+
             moodButtons.forEach(b => b.classList.remove('selected'));
-            // Seleciona o clicado (toggle)
-            if(selectedMood === btn.dataset.mood) {
+
+            if (selectedMood === btn.dataset.mood) {
                 selectedMood = null;
             } else {
                 selectedMood = btn.dataset.mood;
@@ -137,22 +136,22 @@
         });
     });
 
-    // Clicar fora do card deseleciona emoji
-    document.body.addEventListener('click', function(event) {
-        if(!card.contains(event.target)) {
+
+    document.body.addEventListener('click', function (event) {
+        if (!card.contains(event.target)) {
             selectedMood = null;
             moodButtons.forEach(b => b.classList.remove('selected'));
         }
     });
 
-    // Submeter
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        if(!selectedMood) {
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        if (!selectedMood) {
             nota.style.display = 'block';
             return;
         }
         const today = new Date().toISOString().split('T')[0];
-        localStorage.setItem('dailyCheckin', JSON.stringify({ mood: selectedMood, date: today }));
+        localStorage.setItem('dailyCheckin', JSON.stringify({mood: selectedMood, date: today}));
         window.location.href = 'ferramentas.html';
     });
 </script>

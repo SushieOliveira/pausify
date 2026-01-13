@@ -425,35 +425,66 @@ body.pomodoro-page #popup {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+/* BOTTOM NAV BAR */
+
 .bottom-bar {
     position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - 30px);
+    max-width: 420px;
+    height: 64px;
+
     background-color: #0a5c60;
-    padding: 10px 30px;
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+
+    border-radius: 32px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
     z-index: 9998;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.12);
 }
 
+/* LINKS */
 .bottom-bar a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.6rem;
-}
+    width: 44px;
+    height: 44px;
 
-.bottom-bar .center {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #0a5c60;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #ffffff;
-    font-size: 1.8rem;
-    transform: translateY(-18px);
+
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: transform 0.15s ease, opacity 0.15s ease;
 }
+
+/* ÍCONES */
+.bottom-bar i {
+    font-size: 1.6rem;
+    line-height: 1;
+    display: block;
+}
+
+/* HOVER */
+.bottom-bar a:hover i {
+    transform: scale(1.15);
+}
+
+/* ATIVO (PÁGINA ATUAL) */
+.bottom-bar a.active i {
+    transform: scale(1.25);
+    opacity: 1;
+}
+
+/* NÃO ATIVO */
+.bottom-bar a:not(.active) {
+    opacity: 0.75;
+}
+
+
+

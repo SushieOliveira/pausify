@@ -1,24 +1,19 @@
-/* ==============================
-   CHECK-IN DIÁRIO
-================================ */
+/*CHECK-IN DIÁRIO*/
 var selectedMood = null;
 var nota = document.getElementById('nota');
 var card = document.getElementById('card');
 var moodButtons = document.getElementsByClassName('mood-btn');
 
-/* ==============================
-   SELEÇÃO/DESSELEÇÃO DE EMOJI
-================================ */
+/* SELEÇÃO/DESSELEÇÃO DE EMOJI*/
 for (var i = 0; i < moodButtons.length; i++) {
     moodButtons[i].onclick = function (event) {
-        event.stopPropagation(); // evita clique "fora"
+        event.stopPropagation();
 
-        // remove todos os selected
+
         for (var j = 0; j < moodButtons.length; j++) {
             moodButtons[j].classList.remove('selected');
         }
 
-        // toggle
         if (selectedMood === this.getAttribute('data-mood')) {
             selectedMood = null;
         } else {
@@ -30,9 +25,7 @@ for (var i = 0; i < moodButtons.length; i++) {
     };
 }
 
-/* ==============================
-   CLIQUE FORA DO CARD
-================================ */
+/*CLIQUE FORA DO CARD */
 document.body.onclick = function (event) {
     if (!card.contains(event.target)) {
         selectedMood = null;
@@ -42,9 +35,7 @@ document.body.onclick = function (event) {
     }
 };
 
-/* ==============================
-   SUBMIT
-================================ */
+/*SUBMIT*/
 document.getElementById('submitBtn').onclick = function () {
     if (!selectedMood) {
         nota.style.display = 'block';
@@ -52,7 +43,7 @@ document.getElementById('submitBtn').onclick = function () {
     }
 
     var today = new Date().toISOString().split('T')[0];
-    localStorage.setItem('dailyCheckin', JSON.stringify({ mood: selectedMood, date: today }));
+    localStorage.setItem('dailyCheckin', JSON.stringify({mood: selectedMood, date: today}));
 
     window.location.href = 'ferramentas.html';
 };

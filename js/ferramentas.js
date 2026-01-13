@@ -1,6 +1,4 @@
-/* ==============================
-   MOSTRAR SUGESTÕES ALEATÓRIAS
-================================ */
+/* MOSTRAR SUGESTÕES ALEATÓRIAS */
 (function () {
     var dailyCheckin = JSON.parse(localStorage.getItem('dailyCheckin'));
     if (!dailyCheckin) {
@@ -13,7 +11,6 @@
     var allSuggestions = moodsData[mood];
     var container = document.getElementById("cardContainer");
 
-    // Escolhe 3 sugestões aleatórias com for
     function getRandomSuggestions(arr, count) {
         if (!count) count = 3;
         var cloned = [];
@@ -49,14 +46,14 @@
         text.textContent = s.text;
         card.appendChild(text);
 
-        // iframe se tiver URL
+
         if (s.url) {
             var iframe = document.createElement('iframe');
             iframe.src = s.url.replace("watch?v=", "embed/");
             card.appendChild(iframe);
         }
 
-        // GIF se tiver
+
         if (s.gif) {
             var img = document.createElement('img');
             img.src = s.gif;

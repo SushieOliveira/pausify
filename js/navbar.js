@@ -4,8 +4,7 @@ document.querySelectorAll('.bottom-bar a').forEach(link => {
         link.classList.add('active');
     }
 });
-
-fetch('pausify/Paginas/navbar.html')
+fetch('/pausify/components/navbar.html')
     .then(res => {
         if (!res.ok) throw new Error('Navbar não encontrada');
         return res.text();
@@ -13,7 +12,7 @@ fetch('pausify/Paginas/navbar.html')
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
 
-        // Marcar o link ativo no menu após carregar a navbar
+        // Marcar link ativo
         document.querySelectorAll('.bottom-bar a').forEach(link => {
             const linkURL = new URL(link.href, window.location.origin);
             if (linkURL.pathname === window.location.pathname) {

@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registo de Sessões - Pausify</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/estilos.css">
+
     <style>
         body {
             background-color: #e0f2f1;
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
         }
 
         main {
@@ -23,7 +23,6 @@
             flex-direction: column;
             background-color: #e9f7f5;
             box-shadow: 0 0 20px rgba(0, 0, 0, .05);
-            overflow: hidden;
             padding-bottom: 80px;
         }
 
@@ -33,7 +32,6 @@
             justify-content: center;
             padding: 20px 0;
             position: relative;
-            background-color: #e9f7f5;
         }
 
         .btn-back {
@@ -49,31 +47,25 @@
             font-size: 1.2rem;
             text-transform: uppercase;
             color: #0a5c60;
-            text-align: center;
         }
 
         .historico-container {
             flex: 1;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
         }
 
         #historico {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
 
         #historico li {
-            background-color: #ffffff;
+            background: #fff;
             padding: 15px 20px;
             border-radius: 12px;
+            margin-bottom: 10px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             font-weight: 500;
-            color: #000;
-            margin-bottom: 10px;
         }
 
         #btnClear {
@@ -82,14 +74,9 @@
             border: none;
             border-radius: 30px;
             padding: 10px 15px;
-            cursor: pointer;
             font-weight: bold;
-            align-self: center;
-            transition: background 0.2s;
-        }
-
-        #btnClear:hover {
-            background-color: #074d4f;
+            display: none;
+            margin: 20px auto 0;
         }
 
         .no-historico {
@@ -97,25 +84,74 @@
             color: #0a5c60;
             font-weight: 600;
             margin-top: 30px;
+            display: none;
         }
     </style>
 </head>
 <body>
+
 <main>
     <div class="header-top">
-        <a href="javascript:history.back()" class="btn-back"><i class="bi bi-arrow-left"></i></a>
+        <a href="javascript:history.back()" class="btn-back">
+            <i class="bi bi-arrow-left"></i>
+        </a>
         <div class="page-title">Registo de Sessões</div>
     </div>
 
     <div class="historico-container">
         <ul id="historico"></ul>
-        <div id="semHistorico" class="no-historico" style="display:none;">Não há sessões registadas.</div>
-        <button id="btnClear" style="display:none;">Limpar Histórico</button>
+        <div id="semHistorico" class="no-historico">
+            Não há sessões registadas.
+        </div>
+        <button id="btnClear">Limpar Histórico</button>
     </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script>
 
+<!-- ================= POPUP ================= -->
+<script>
+    var overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.display = 'none';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.background = 'rgba(0,0,0,0.3)';
+    overlay.style.zIndex = 1000;
+
+    var popup = document.createElement('div');
+    popup.style.backgroundColor = '#0a5c60';
+    popup.style.color = '#fff';
+    popup.style.padding = '20px 30px';
+    popup.style.borderRadius = '15px';
+    popup.style.fontWeight = '700';
+    popup.style.opacity = 0;
+    popup.style.transform = 'translateY(-20px)';
+    popup.style.transition = 'opacity .3s ease, transform .3s ease';
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    function mostrarPopup(msg){
+        popup.textContent = msg;
+        overlay.style.display = 'flex';
+        setTimeout(() => {
+            popup.style.opacity = 1;
+            popup.style.transform = 'translateY(0)';
+        }, 10);
+
+        setTimeout(() => {
+            popup.style.opacity = 0;
+            popup.style.transform = 'translateY(-20px)';
+            setTimeout(() => overlay.style.display = 'none', 300);
+        }, 2500);
+    }
+</script>
+
+<!-- ================= HISTÓRICO ================= -->
+<script>
     var historico = JSON.parse(localStorage.getItem("historicoSessoes")) || [];
     var historicoEl = document.getElementById("historico");
     var btnClear = document.getElementById("btnClear");
@@ -123,14 +159,15 @@
 
     function atualizarHistorico() {
         historicoEl.innerHTML = "";
+
         if (historico.length === 0) {
             semHistorico.style.display = "block";
             btnClear.style.display = "none";
             return;
-        } else {
-            semHistorico.style.display = "none";
-            btnClear.style.display = "block";
         }
+
+        semHistorico.style.display = "none";
+        btnClear.style.display = "block";
 
         for (var i = historico.length - 1; i >= 0; i--) {
             var item = historico[i];
@@ -144,15 +181,16 @@
         }
     }
 
-    btnClear.addEventListener("click", function() {
-        if(confirm("Tem certeza que deseja apagar todo o histórico?")) {
-            historico = [];
-            localStorage.removeItem("historicoSessoes");
-            atualizarHistorico();
-        }
+    btnClear.addEventListener("click", function () {
+        mostrarPopup("Histórico apagado com sucesso!");
+        historico = [];
+        localStorage.removeItem("historicoSessoes");
+        setTimeout(atualizarHistorico, 500);
     });
 
     atualizarHistorico();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

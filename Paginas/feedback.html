@@ -46,7 +46,6 @@
             color: #0a5c60;
         }
 
-        /* Caixa do formulário */
         .feedback-box {
             max-width: 380px;
             margin: 40px auto 0;
@@ -96,7 +95,7 @@
     </div>
 
     <div class="feedback-box">
-        <textarea rows="4" placeholder="Escreve aqui o teu feedback..."></textarea>
+        <textarea id="feedbackTexto" rows="4" placeholder="Escreve aqui o teu feedback..."></textarea>
 
         <div class="d-grid mt-4">
             <button class="btn-enviar">ENVIAR</button>
@@ -105,10 +104,66 @@
 
 </main>
 
+<!-- ================= POPUP ================= -->
+<script>
+    var overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.display = 'none';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.background = 'rgba(0,0,0,0.3)';
+    overlay.style.zIndex = '1000';
+
+    var popup = document.createElement('div');
+    popup.style.backgroundColor = '#0a5c60';
+    popup.style.color = '#fff';
+    popup.style.padding = '20px 30px';
+    popup.style.borderRadius = '15px';
+    popup.style.fontWeight = '700';
+    popup.style.fontSize = '1rem';
+    popup.style.opacity = 0;
+    popup.style.transform = 'translateY(-20px)';
+    popup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    function mostrarPopup(mensagem){
+        popup.textContent = mensagem;
+        overlay.style.display = 'flex';
+
+        setTimeout(() => {
+            popup.style.opacity = 1;
+            popup.style.transform = 'translateY(0)';
+        }, 10);
+
+        setTimeout(() => {
+            popup.style.opacity = 0;
+            popup.style.transform = 'translateY(-20px)';
+            setTimeout(() => overlay.style.display = 'none', 300);
+        }, 2500);
+    }
+</script>
+
+<!-- ================= BOTÃO ENVIAR ================= -->
 <script>
     document.querySelector('.btn-enviar').addEventListener('click', () => {
-        alert("Obrigado pelo teu feedback 💚");
-        history.back();
+        const texto = document.getElementById('feedbackTexto').value.trim();
+
+        if (!texto) {
+            mostrarPopup("Escreve o teu feedback antes de enviar 😊");
+            return;
+        }
+
+        mostrarPopup("Obrigado pelo teu feedback 💚");
+
+        setTimeout(() => {
+            history.back();
+        }, 1800);
     });
 </script>
 

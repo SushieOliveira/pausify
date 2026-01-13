@@ -344,7 +344,7 @@ body.pomodoro-page .btn-reset:hover {
 
 body.pomodoro-page .btn-notify {
     background-color: #0a5c60;
-    color: white;
+    color: white ;
     border-radius: 100%;
     width: 55px;
     height: 55px;
@@ -353,14 +353,17 @@ body.pomodoro-page .btn-notify {
     align-items: center;
     justify-content: center;
     transition: 0.2s;
-    border: 2px solid #0a5c60;
+    border: 2px solid #0a5c60 ;
+    cursor: pointer;
 }
 
+
 body.pomodoro-page .btn-notify.off {
-    background-color: #e9f7f5;
-    color: #0a5c60;
-    border-color: #0a5c60;
+    background-color: white;
+    color: #0a5c60 ;
+    border-color: #0a5c60 ;
 }
+
 
 body.pomodoro-page .section-title {
     text-align: center;
@@ -400,6 +403,7 @@ body.pomodoro-page #btnClear:active {
     border-color: #c0392b;
     cursor: pointer;
 }
+
 
 body.pomodoro-page #overlay {
     position: fixed;

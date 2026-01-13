@@ -5,7 +5,7 @@ document.querySelectorAll('.bottom-bar a').forEach(link => {
     }
 });
 
-fetch('navbar.html')
+fetch('pausify/Paginas/navbar.html')
     .then(res => {
         if (!res.ok) throw new Error('Navbar não encontrada');
         return res.text();

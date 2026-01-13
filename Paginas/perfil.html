@@ -6,7 +6,7 @@
     <title>Pausify - Perfil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <style>
         body {
             background-color: #e0f2f1;
@@ -171,9 +171,6 @@
         <button id="btnLogout" class="botao-perfil botaoterminar">Terminar Sessão</button>
     </div>
 </div>
-
-<div id="navbar"></div>
-<script src="js/navbar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     window.addEventListener("DOMContentLoaded", function () {
@@ -188,7 +185,9 @@
         let userLogado = null;
         try {
             userLogado = JSON.parse(localStorage.getItem("userLogado"));
-        } catch(e) { userLogado = null; }
+        } catch (e) {
+            userLogado = null;
+        }
 
         if (!userLogado || (!userLogado.username && !userLogado.login)) {
             window.location.href = "login.html";
@@ -200,7 +199,7 @@
         let utilizadoresLS = JSON.parse(localStorage.getItem("utilizadores")) || [];
 
 
-        const admin = { login: "admin", pass: "admin", nome: "Admin", apelido: "", avatar: null, bio: "" };
+        const admin = {login: "admin", pass: "admin", nome: "Admin", apelido: "", avatar: null, bio: ""};
         if (!utilizadoresLS.some(u => u.login === "admin")) {
             utilizadoresLS.push(admin);
         }

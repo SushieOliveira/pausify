@@ -95,7 +95,6 @@ if (avatarsContainer && uploadInput) {
 
             var deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-btn');
-            deleteBtn.textContent = "X";
             deleteBtn.addEventListener('click', function (ev) {
                 ev.stopPropagation();
                 avatarsContainer.removeChild(novoAvatar);

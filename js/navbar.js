@@ -4,7 +4,8 @@ document.querySelectorAll('.bottom-bar a').forEach(link => {
         link.classList.add('active');
     }
 });
-fetch('/pausify/navbar/navbar.html')
+
+fetch('../navbar/navbar.html')
     .then(res => {
         if (!res.ok) throw new Error('Navbar não encontrada');
         return res.text();
@@ -12,7 +13,7 @@ fetch('/pausify/navbar/navbar.html')
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
 
-        // Marcar link ativo
+        // Marcar link ativo após carregar navbar
         document.querySelectorAll('.bottom-bar a').forEach(link => {
             const linkURL = new URL(link.href, window.location.origin);
             if (linkURL.pathname === window.location.pathname) {

@@ -1,5 +1,5 @@
-var TEMPO_FOCO = 0.25 * 60; //alterar p/testar
-var TEMPO_PAUSA = 0.5 * 60; //alterar p/testar
+var TEMPO_FOCO = 25 * 60; //alterar p/testar
+var TEMPO_PAUSA = 5 * 60; //alterar p/testar
 var tempoTotal = TEMPO_FOCO;
 var tempoRestante = TEMPO_FOCO;
 var intervalo = null;

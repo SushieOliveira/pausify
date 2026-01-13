@@ -48,7 +48,7 @@ function mostrarPopup(mensagem){
 var pontos = localStorage.getItem("pontos");
 
 if (!pontos) {
-    pontos = 0; // valor inicial
+    pontos =550; // valor inicial
 } else {
     pontos = parseInt(pontos);
 }
